@@ -1,0 +1,4 @@
+entity.guernsey_book.collection:
+  title: 'Guernsey: Books Listing'
+  route_name: entity.guernsey_book.collection
+  description: 'List Books'

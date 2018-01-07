@@ -1,0 +1,39 @@
+entity.guernsey_book.canonical:
+  path: '/book/{guernsey_book}'
+  defaults:
+    _entity_view: 'guernsey_book'
+    _title: 'Book Content'
+  requirements:
+    _entity_access: 'guernsey_book.view'
+
+entity.guernsey_book.collection:
+  path: '/books/list'
+  defaults:
+    _entity_list: 'guernsey_book'
+    _title: 'Book List'
+  requirements:
+    _permission: 'view book entity'
+
+guernsey.book_add:
+  path: '/book/add'
+  defaults:
+    _entity_form: guernsey_book.add
+    _title: 'Add Book'
+  requirements:
+    _entity_create_access: 'guernsey_book'
+
+entity.guernsey_book.edit_form:
+  path: '/book/{guernsey_book}/edit'
+  defaults:
+    _entity_form: guernsey_book.edit
+    _title: 'Edit Book'
+  requirements:
+    _entity_access: 'guernsey_book.edit'
+
+entity.guernsey_book.delete_form:
+  path: '/book/{guernsey_book}/delete'
+  defaults:
+    _entity_form: guernsey_book.delete
+    _title: 'Delete Book'
+  requirements:
+    _entity_access: 'guernsey_book.delete'

@@ -1,0 +1,5 @@
+name: The Guernsey Literary and Potato Peel Pie Society
+type: module
+description: Book club functionality, mainly used as an excuse to experiment TDD principles in Drupal 8.
+package: Example modules
+core: 8.x

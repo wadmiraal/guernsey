@@ -1,0 +1,20 @@
+guernsey_book.settings_tab:
+  route_name: guernsey.contact_settings
+  title: Settings
+  base_route: guernsey.contact_settings
+
+guernsey_book.view:
+  route_name: entity.guernsey_book.canonical
+  base_route: entity.guernsey_book.canonical
+  title: View
+
+guernsey_book.page_edit:
+  route_name: entity.guernsey_book.edit_form
+  base_route: entity.guernsey_book.canonical
+  title: Edit
+
+guernsey_book.delete_confirm:
+  route_name: entity.guernsey_book.delete_form
+  base_route: entity.guernsey_book.canonical
+  title: Delete
+  weight: 10

@@ -1,0 +1,6 @@
+guernsey.book_add:
+  route_name: guernsey.book_add
+  title: 'Add Book'
+  appears_on:
+    - entity.guernsey_book.collection
+    - entity.guernsey_book.canonical

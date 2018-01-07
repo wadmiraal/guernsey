@@ -1,0 +1,13 @@
+view book entity:
+  title: 'View Book entity'
+add book entity:
+  title: 'Add Book entity'
+edit book entity:
+  title: 'Edit Book Entity'
+delete book entity:
+  title: 'Delete Book entity'
+administer book entity:
+  title: 'Administer Book entity'
+  # This flags this permission has having security implication. If true, Drupal
+  # will put up a warning when this permission is assigned.
+  restrict access: TRUE

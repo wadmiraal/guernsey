@@ -4,7 +4,8 @@ namespace Drupal\guernsey\Entity;
 
 use Drupal\Core\Entity\ContentEntityBase;
 use Drupal\Core\Entity\EntityTypeInterface;
-use Drupal\user\UserInterface;
+use Drupal\Core\Entity\EntityChangedTrait;
+use Drupal\Core\Field\BaseFieldDefinition;
 use Drupal\guernsey\BookInterface;
 
 /**
@@ -28,7 +29,7 @@ use Drupal\guernsey\BookInterface;
  *   admin_permission = "administer book entity",
  *   entity_keys = {
  *     "id" = "id",
- *     "label" = "name",
+ *     "label" = "title",
  *     "uuid" = "uuid"
  *   },
  *   links = {
@@ -41,6 +42,8 @@ use Drupal\guernsey\BookInterface;
  */
 class Book extends ContentEntityBase implements BookInterface {
 
+  use EntityChangedTrait;
+
   /**
    * {@inheritdoc}
    */
@@ -49,53 +52,25 @@ class Book extends ContentEntityBase implements BookInterface {
   }
 
   /**
-   * {@inheritdoc}
+   * Sets the title of the book.
+   *
+   * @param string $title
+   *   The title of the book.
+   *
+   * @return $this
    */
-  public function setChangedTime($timestamp) {
+  public function setTitle($title) {
+    $this->set('title', $title);
     return $this;
   }
 
   /**
-   * {@inheritdoc}
+   * Get the title of the book.
+   *
+   * @return string
    */
-  public function getChangedTime() {
-    return time();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getChangedTimeAcrossTranslations()  {
-    return time();
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwner(UserInterface $account) {
-    $this->set('user_id', $account->id());
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwner() {
-    return null;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function setOwnerId($uid) {
-    return $this;
-  }
-
-  /**
-   * {@inheritdoc}
-   */
-  public function getOwnerId() {
-    return null;
+  public function getTitle() {
+    return $this->get('title')->value;
   }
 
   /**
@@ -103,6 +78,63 @@ class Book extends ContentEntityBase implements BookInterface {
    */
   public static function baseFieldDefinitions(EntityTypeInterface $entity_type) {
     $fields = array();
+
+    $fields['id'] = BaseFieldDefinition::create('id')
+      ->setLabel('ID')
+      ->setReadOnly(TRUE);
+
+    $fields['uuid'] = BaseFieldDefinition::create('uuid')
+      ->setLabel('UUID')
+      ->setReadOnly(TRUE);
+
+    $fields['title'] = BaseFieldDefinition::create('string')
+      ->setLabel('Title')
+      ->setRequired(TRUE)
+      ->setDescription('The title of the book.')
+      ->setSettings([
+        'default_value' => '',
+        'max_length' => 255,
+        'text_processing' => 0,
+      ])
+      ->setDisplayOptions('view', [
+        'label' => 'hidden',
+        'type' => 'string',
+        'weight' => -10,
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'string_textfield',
+        'weight' => -10,
+      ])
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
+
+    $fields['created'] = BaseFieldDefinition::create('created')
+      ->setLabel('Created');
+
+    $fields['changed'] = BaseFieldDefinition::create('changed')
+      ->setLabel('Changed');
+
+    $fields['author'] = BaseFieldDefinition::create('entity_reference')
+      ->setLabel('Author(s)')
+      ->setRequired(TRUE)
+      ->setDescription(t('The author(s) of the book.'))
+      ->setSetting('target_type', 'taxonomy_term')
+      ->setSetting('handler', 'default:taxonomy_term')
+      ->setSetting('handler_settings', [
+        'auto_create' => true,
+        'target_bundles' => ['guernsey_authors' => 'guernsey_authors'],
+      ])
+      ->setDisplayOptions('form', [
+        'type' => 'entity_reference_autocomplete',
+        'weight' => 3,
+        'settings' => [
+          'match_operator' => 'CONTAINS',
+          'autocomplete_type' => 'tags',
+        ],
+      ])
+      ->setDisplayConfigurable('form', FALSE)
+      ->setDisplayConfigurable('view', FALSE);
+
     return $fields;
   }
 

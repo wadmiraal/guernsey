@@ -5,5 +5,5 @@ php:
   - '7.2'
 install:
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
-  - cd drupal/web/modules && git clone https://github.com/$TRAVIS_REPO_SLUG.git guernsey && cd guernsey && git checkout $TRAVIS_COMMIT
-  - cd drupal && cp web/core/phpunit.xml.dist . && sed -i '' 's/tests\//web\/core\/tests\//' phpunit.xml.dist
+  - cd drupal/web/modules && git clone https://github.com/$TRAVIS_REPO_SLUG.git guernsey && cd guernsey && git checkout $TRAVIS_COMMIT && cd -
+  - cd drupal && cp web/core/phpunit.xml.dist . && sed -i '' 's/tests\//web\/core\/tests\//' phpunit.xml.dist && cd -

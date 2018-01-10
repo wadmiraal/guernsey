@@ -2,11 +2,13 @@ language: php
 php:
   - '7.0'
   - '7.1'
-  - '7.2'
 env:
   - SIMPLETEST_DB=sqlite://testdb.sqlite
 install:
+  # We need a full Drupal project for our Kernel tests to work. Create a new project.
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
-  - git clone https://github.com/$TRAVIS_REPO_SLUG.git drupal/web/modules/guernsey && cd drupal/web/modules/guernsey && git checkout $TRAVIS_COMMIT && cd -
+  # Drupal 8.4.x has a bug that doesn't allow Kernel tests to use SQLite. Apply a patch that fixes it.
   - cp sqlite-driver-exception.patch drupal/web && cd drupal/web/ && patch -p1 < sqlite-driver-exception.patch && cd -
+  # Our code is no longer in the correct place. Instead of copying it, checkout again.
+  - git clone https://github.com/$TRAVIS_REPO_SLUG.git drupal/web/modules/guernsey && cd drupal/web/modules/guernsey && git checkout $TRAVIS_COMMIT && cd -
 script: drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/

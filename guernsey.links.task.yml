@@ -18,3 +18,25 @@ guernsey_book.delete_confirm:
   base_route: entity.guernsey_book.canonical
   title: Delete
   weight: 10
+# Book routing definition
+guernsey_book.settings_tab:
+  route_name: guernsey_book.settings
+  title: 'Settings'
+  base_route: guernsey_book.settings
+
+entity.guernsey_book.canonical:
+  route_name: entity.guernsey_book.canonical
+  base_route: entity.guernsey_book.canonical
+  title: 'View'
+
+entity.guernsey_book.edit_form:
+  route_name: entity.guernsey_book.edit_form
+  base_route: entity.guernsey_book.canonical
+  title: 'Edit'
+
+entity.guernsey_book.delete_form:
+  route_name:  entity.guernsey_book.delete_form
+  base_route:  entity.guernsey_book.canonical
+  title: Delete
+  weight: 10
+

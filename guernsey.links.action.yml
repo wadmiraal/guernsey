@@ -4,3 +4,8 @@ guernsey.book_add:
   appears_on:
     - entity.guernsey_book.collection
     - entity.guernsey_book.canonical
+entity.guernsey_book.add_form:
+  route_name: entity.guernsey_book.add_form
+  title: 'Add Book'
+  appears_on:
+    - entity.guernsey_book.collection

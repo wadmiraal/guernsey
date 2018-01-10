@@ -7,7 +7,7 @@ entity.guernsey_book.canonical:
     _entity_access: 'guernsey_book.view'
 
 entity.guernsey_book.collection:
-  path: '/books/list'
+  path: '/book/list'
   defaults:
     _entity_list: 'guernsey_book'
     _title: 'Book List'

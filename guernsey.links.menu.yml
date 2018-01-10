@@ -2,3 +2,17 @@ entity.guernsey_book.collection:
   title: 'Guernsey: Books Listing'
   route_name: entity.guernsey_book.collection
   description: 'List Books'
+
+# Book menu items definition
+entity.guernsey_book.collection:
+  title: 'Book list'
+  route_name: entity.guernsey_book.collection
+  description: 'List Book entities'
+  parent: system.admin_structure
+  weight: 100
+
+guernsey_book.admin.structure.settings:
+  title: Book settings
+  description: 'Configure Book entities'
+  route_name: guernsey_book.settings
+  parent: system.admin_structure

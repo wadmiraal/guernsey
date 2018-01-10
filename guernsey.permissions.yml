@@ -1,13 +1,19 @@
-view book entity:
-  title: 'View Book entity'
-add book entity:
-  title: 'Add Book entity'
-edit book entity:
-  title: 'Edit Book Entity'
-delete book entity:
-  title: 'Delete Book entity'
-administer book entity:
-  title: 'Administer Book entity'
-  # This flags this permission has having security implication. If true, Drupal
-  # will put up a warning when this permission is assigned.
-  restrict access: TRUE
+add book entities:
+  title: 'Create new Book entities'
+
+administer book entities:
+  title: 'Administer Book entities'
+  description: 'Allow to access the administration form to configure Book entities.'
+  restrict access: true
+
+delete book entities:
+  title: 'Delete Book entities'
+
+edit book entities:
+  title: 'Edit Book entities'
+
+view published book entities:
+  title: 'View published Book entities'
+
+view unpublished book entities:
+  title: 'View unpublished Book entities'

@@ -8,4 +8,4 @@ env:
 install:
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
   - git clone https://github.com/$TRAVIS_REPO_SLUG.git drupal/web/modules/guernsey && cd drupal/web/modules/guernsey && git checkout $TRAVIS_COMMIT && cd -
-script: phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/
+script: drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/

@@ -3,10 +3,11 @@ php:
   - '7.0'
   - '7.1'
   - '7.2'
+env:
+  - SIMPLETEST_DB=sqlite://testdb.sqlite
 install:
-  - pwd
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
-  - git clone https://github.com/$TRAVIS_REPO_SLUG.git drupal/web/modules/guernsey && cd drupal/web/modules/guernsey && git checkout $TRAVIS_COMMIT
-  - pwd
+  - git clone https://github.com/$TRAVIS_REPO_SLUG.git drupal/web/modules/guernsey && cd drupal/web/modules/guernsey && git checkout $TRAVIS_COMMIT && cd -
   - cp drupal/web/core/phpunit.xml.dist drupal/
   - sed -i '' 's/tests\//web\/core\/tests\//' drupal/phpunit.xml.dist
+script: cd drupal && ./vendor/bin/phpunit web/modules/guernsey/tests/

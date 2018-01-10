@@ -10,7 +10,7 @@ index dd19018828..d321396523 100644
 +    if (!isset($info['scheme'], $info['path'])) {
 +      throw new \InvalidArgumentException('Minimum requirement: driver://host/database');
 +    }
-+    if ($info['scheme'] !== 'sqlite' && !isset($info['host']) {
++    if ($info['scheme'] !== 'sqlite' && !isset($info['host'])) {
        throw new \InvalidArgumentException('Minimum requirement: driver://host/database');
      }
      $info += [

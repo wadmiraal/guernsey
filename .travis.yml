@@ -2,6 +2,11 @@ language: php
 php:
   - '7.0'
   - '7.1'
+addons:
+  sonarcloud:
+    organization: "wadmiraal-github"
+    token:
+      secure: "VFAX4S00//GpUUWIWsf2pDs91tHW03fmJuAvHjzyX3/jaVrGbufPNTafYD0I3xOq3DZmWGUk88fAXAbQYA4uLbtZJLhBKipwPsYKWIEcHC89/A9D535cBeaYJ6jJTzWRIEa8peVYmaA0yBOZdBO3ADgYUotCiwc8kiJEFB0/c45KR2ZosfSKE4V4/YnpsqblLrq31sGxZOOHWSbGa7Uine4ACFhmYC3d6pEgxOEvLgbXyfUU+jkEyNj9Gaule3AwWOHDJMEtBFiweGsL0NYza3WekBBpNE91k9xYjSNdlvUZfpOG7/9f9kKskCgYm/LVWAoKIteTCgRYGPIjK/z3bBK9DcqkKUXWNh+B5D9Nd6dsYfVwDsZwnOst+ztu6VSys00eJDjfcf+K0HfjjzCKLN0VYXYJSgYkLSuV+7e2BEsinwVhA7+OcrT0fXAfTXgWd1RoY6PNtLAzH0GP1ApDJOQGofFPgW8yH+qphzh0fl8Tpt8WbNVLulgx9KfCIw2DqWOhBBJt1X/7RN7OTsAscgabF6ipVJ2EZcgoFF6PR4lw+xslBXjf5RaTPhatusbr6y/sT1N/Xf+bilMSMDCeSELlMZ1snJsLoPXyQGbbI7tXvOW12+PXwWxW01GjwAeEfR3aFWSabxBeotNoRjyuVAMtN0bsHrs/ssZjwws/abU="
 env:
   - SIMPLETEST_DB=sqlite://testdb.sqlite
 install:
@@ -11,4 +16,6 @@ install:
   - cp sqlite-driver-exception.patch drupal/web && cd drupal/web/ && patch -p1 < sqlite-driver-exception.patch && cd -
   # Our code is no longer in the correct place. Instead of copying it, checkout again.
   - git clone https://github.com/$TRAVIS_REPO_SLUG.git drupal/web/modules/guernsey && cd drupal/web/modules/guernsey && git checkout $TRAVIS_COMMIT && cd -
-script: drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/
+script:
+  - drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/
+  - sonar-scanner

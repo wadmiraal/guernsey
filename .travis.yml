@@ -14,8 +14,8 @@ install:
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
   # Drupal 8.4.x has a bug that doesn't allow Kernel tests to use SQLite. Apply a patch that fixes it.
   - cp sqlite-driver-exception.patch drupal/web && cd drupal/web/ && patch -p1 < sqlite-driver-exception.patch && cd -
-  # Our code is no longer in the correct place. Instead of copying it, checkout again.
-  - git clone https://github.com/$TRAVIS_REPO_SLUG.git drupal/web/modules/guernsey && cd drupal/web/modules/guernsey && git checkout $TRAVIS_COMMIT && cd -
+  # Our code is no longer in the correct place. Copy it over.
+  - mkdir -p drupal/web/modules/guernsey && cp -a guernsey* tests templates src config drupal/web/modules/guernsey
 script:
-  - drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/
-  - sonar-scanner
+  - drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/ --coverage-clover clover.xml --log-junit junit.log
+  - sonar-scanner -Dsonar.php.tests.reportPath=junit.log -Dsonar.php.coverage.reportPaths=drupal/web/clover.xml

@@ -1,5 +1,6 @@
---- phpunit.xml.dist	2018-01-12 09:34:43.000000000 +0100
-+++ phpunit.xml.dist	2018-01-12 09:35:06.000000000 +0100
+diff a/phpunit.xml.dist b/phpunit.xml.dist
+--- a/phpunit.xml.dist	2018-01-12 09:34:43.000000000 +0100
++++ b/phpunit.xml.dist	2018-01-12 09:35:06.000000000 +0100
 @@ -55,11 +55,7 @@
    <!-- Filter for coverage reports. -->
    <filter>

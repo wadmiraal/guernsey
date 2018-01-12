@@ -16,6 +16,8 @@ install:
   - cp sqlite-driver-exception.patch drupal/web && cd drupal/web/ && patch -p1 < sqlite-driver-exception.patch && cd -
   # Our code is no longer in the correct place. Copy it over.
   - mkdir -p drupal/web/modules/guernsey && cp -a guernsey* tests templates src config drupal/web/modules/guernsey
+  # Update the phpunit.xml.dist file. We want to ignore test coverage for core files.
+  - cp travis-ci-phpunit.xml.dist.patch drupal/web/core && cd drupal/web/core && patch -p1 < travis-ci-phpunit.xml.dist.patch && cd -
 script:
   - drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/ --coverage-clover clover.xml --log-junit junit.log
   - sonar-scanner -Dsonar.php.tests.reportPath=junit.log -Dsonar.php.coverage.reportPaths=drupal/web/clover.xml

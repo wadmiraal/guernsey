@@ -20,4 +20,4 @@ install:
   - cp travis-ci-phpunit.xml.dist.patch drupal/web/core && cd drupal/web/core && patch -p1 < travis-ci-phpunit.xml.dist.patch && cd -
 script:
   - drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/ --coverage-clover clover.xml --log-junit junit.log
-  - sonar-scanner -Dsonar.php.tests.reportPath=junit.log -Dsonar.php.coverage.reportPaths=drupal/web/clover.xml
+  - sonar-scanner -Dsonar.sources=drupal/web/modules/guernsey/src -Dsonar.php.tests.reportPath=junit.log -Dsonar.php.coverage.reportPaths=drupal/web/clover.xml

@@ -1,6 +1,6 @@
 # Guernsey
 
-[![Build Status](https://travis-ci.org/wadmiraal/guernsey.svg?branch=master)](https://travis-ci.org/wadmiraal/guernsey) [![Code Quality](https://sonarcloud.io/dashboard?id=wadmiraal%3Aguernsey)](https://sonarcloud.io/api/badges/gate?key=wadmiraal%3Aguernsey)
+[![Build Status](https://travis-ci.org/wadmiraal/guernsey.svg?branch=master)](https://travis-ci.org/wadmiraal/guernsey) [![Code Quality](https://sonarcloud.io/api/badges/gate?key=wadmiraal%3Aguernsey)](https://sonarcloud.io/dashboard?id=wadmiraal%3Aguernsey)
 
 An experimental module, to see how well we can apply TDD principles in Drupal 8.
 

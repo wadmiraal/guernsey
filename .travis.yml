@@ -13,11 +13,11 @@ install:
   # We need a full Drupal project for our Kernel tests to work. Create a new project.
   - composer create-project drupal-composer/drupal-project:8.x-dev drupal --stability dev --no-interaction
   # Drupal 8.4.x has a bug that doesn't allow Kernel tests to use SQLite. Apply a patch that fixes it.
-  - cp sqlite-driver-exception.patch drupal/web && cd drupal/web/ && patch -p1 < sqlite-driver-exception.patch && cd -
+  - patch -d drupal/web -p1 < sqlite-driver-exception.patch
   # Our code is no longer in the correct place. Copy it over.
   - mkdir -p drupal/web/modules/guernsey && cp -a guernsey* tests templates src config drupal/web/modules/guernsey
   # Update the phpunit.xml.dist file. We want to ignore test coverage for core files.
-  - cp travis-ci-phpunit.xml.dist.patch drupal/web/core && cd drupal/web/core && patch -p1 < travis-ci-phpunit.xml.dist.patch && cd -
+  - patch -d drupal/web/core -p1 < travis-ci-phpunit.xml.dist.patch
 script:
   - drupal/vendor/bin/phpunit -c drupal/web/core drupal/web/modules/guernsey/tests/ --coverage-clover clover.xml --log-junit junit.log
   # Because the clover report will consider the files in drupal/web/modules, we need to set the Sonar source

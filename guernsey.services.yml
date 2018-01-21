@@ -1,0 +1,3 @@
+services:
+  guernsey.csv_validator:
+    class: Drupal\guernsey\CsvValidator

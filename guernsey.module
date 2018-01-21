@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * File validation callback.
+ *
+ * Validate the CSV file uses the correct format.
+ *
+ * @see \Drupal\guernsey\Form\BookImportForm::buildForm()
+ * @see guernsey.csv_validator
+ *
+ * @param \Drupal\file\FileInterface $file
+ *
+ * @return array
+ *     The errors, if any.
+ */
+function guernsey_validate_csv(\Drupal\file\FileInterface $file) {
+  return \Drupal::service('guernsey.csv_validator')->validate($file);
+}

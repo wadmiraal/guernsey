@@ -22,6 +22,14 @@ guernsey.book_add:
   requirements:
     _entity_create_access: 'guernsey_book'
 
+guernsey.book_import:
+  path: '/book/import'
+  defaults:
+    _title: 'Import Books'
+    _form: '\Drupal\guernsey\Form\BookImportForm'
+  requirements:
+    _entity_create_access: 'guernsey_book'
+
 entity.guernsey_book.edit_form:
   path: '/book/{guernsey_book}/edit'
   defaults:

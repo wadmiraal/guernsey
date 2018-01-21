@@ -16,17 +16,40 @@ class BookImportFormTest extends UnitTestCase {
    */
   public function setUp() {
     parent::setUp();
+
     $container = new ContainerBuilder();
 
+    // Mock the string translations.
     $translations = $this->getMock(TranslationInterface::class);
     $container->set('string_translation', $translations);
 
+    // Mock the current user.
     $user = $this->getMockBuilder(User::class)
       ->disableOriginalConstructor()
       ->getMock();
     $container->set('current_user', $user);
 
+    // Set the container.
     \Drupal::setContainer($container);
+  }
+
+  public function testFormBuilding() {
+    // Test the form building for an anonymous user.
+    $import_form = new BookImportForm();
+    $form = $import_form->buildForm(array(), new FormState());
+    $this->assertArrayNotHasKey('admin_field', $form, "An anonymous user doesn't see the checkbox.");
+
+    // Update the user, give the permission required to see the field. We know
+    // the current user is a mock, so we can alter it directly.
+    $user = \Drupal::currentUser();
+    $user->expects($this->any())
+      ->method('hasPermission')
+      ->with($this->equalTo('administer book entities'))
+      ->will($this->returnValue(TRUE));
+
+    // Build the form again.
+    $form = $import_form->buildForm(array(), new FormState());
+    $this->assertArrayHasKey('admin_field', $form, "An admin user sees the checkbox.");
   }
 
   /**

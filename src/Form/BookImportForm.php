@@ -10,6 +10,8 @@ class BookImportForm extends FormBase {
 
   /**
    * {@inheritdoc}
+   *
+   * @codeCoverageIgnore
    */
   public function getFormId() {
     return 'guernsey_import_books';

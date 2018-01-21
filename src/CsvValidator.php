@@ -36,7 +36,7 @@ class CsvValidator {
 
     $i = 0;
     $errors = array();
-    while (($row = fgetcsv($fh))) {
+    while ($row = fgetcsv($fh)) {
       $i++;
       @list($title, $author) = $row;
       if (empty($title)) {

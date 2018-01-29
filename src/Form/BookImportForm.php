@@ -59,6 +59,8 @@ class BookImportForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
+    parent::validateForm($form, $form_state);
+    
     $palindrome = preg_replace('/[^a-z\d]/i', '', strtolower($form_state->getValue('palindrome')));
     if ($palindrome != strrev($palindrome)) {
       $form_state->setErrorByName('palindrome', $this->t("The palindrome value is incorrect."));

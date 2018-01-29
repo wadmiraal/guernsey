@@ -6,7 +6,7 @@ use Drupal\Core\Entity\ContentEntityForm;
 use Drupal\Core\Form\FormStateInterface;
 
 /**
- * Form controller for Book edit forms.
+ * Unit controller for Book edit forms.
  *
  * @ingroup guernsey
  */

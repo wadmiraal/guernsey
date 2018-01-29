@@ -25,10 +25,10 @@ use Drupal\user\UserInterface;
  *     "list_builder" = "Drupal\guernsey\BookListBuilder",
  *     "views_data" = "Drupal\guernsey\Entity\BookViewsData",
  *     "form" = {
- *       "default" = "Drupal\guernsey\Form\BookForm",
- *       "add" = "Drupal\guernsey\Form\BookForm",
- *       "edit" = "Drupal\guernsey\Form\BookForm",
- *       "delete" = "Drupal\guernsey\Form\BookDeleteForm",
+ *       "default" = "Drupal\guernsey\Unit\BookForm",
+ *       "add" = "Drupal\guernsey\Unit\BookForm",
+ *       "edit" = "Drupal\guernsey\Unit\BookForm",
+ *       "delete" = "Drupal\guernsey\Unit\BookDeleteForm",
  *     },
  *     "route_provider" = {
  *       "html" = "Drupal\guernsey\BookHtmlRouteProvider",

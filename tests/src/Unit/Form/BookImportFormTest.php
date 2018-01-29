@@ -23,7 +23,7 @@ class BookImportFormTest extends UnitTestCase {
     $translations = $this->getMock(TranslationInterface::class);
     $container->set('string_translation', $translations);
 
-    // Mock the current user.
+    // Mock the current user. We'll enhance it later.
     $user = $this->getMockBuilder(User::class)
       ->disableOriginalConstructor()
       ->getMock();
@@ -69,6 +69,7 @@ class BookImportFormTest extends UnitTestCase {
     }
     else {
       $this->assertCount(1, $form_state->getErrors(), "The validation fails for value $value.");
+      $this->assertArrayHasKey('palindrome', $form_state->getErrors(), "The field was correctly marked as having an error.");
     }
   }
 
@@ -77,7 +78,7 @@ class BookImportFormTest extends UnitTestCase {
    */
   public function palindromeDataProvider() {
     return [
-      ['asdsa', TRUE],
+      ['a', TRUE],
       ['Was it a car or a cat I saw?', TRUE],
       ['A man, a plan, a canal, Panama!', TRUE],
       ['abc', FALSE],
